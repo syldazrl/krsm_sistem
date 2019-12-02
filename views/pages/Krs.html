@@ -1,135 +1,104 @@
-<div class="card">
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table">
-                <thead class=" text-primary">
-                    <tr>
-                        <th colspan="8" align="left"><a class="btn btn-success pull-right" id="modal-428658"
-                                role="button" href="" data-target="#modal-container-428658" data-toggle="modal">Tambah
-                                Data</a></th>
-                    </tr>
-                    <tr align="center">
-                        <th>#</th>
-                        <th>Nama Mahasiswa</th>
-                        <th>Dosen Wali</th>
-                        <th>Keterengan</th>
-                        <th>Tahun Ajaran</th>
-                        <th colspan="2">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in DatasKrs">
-                        <td>{{$index+1}}</td>
-                        <td>{{item.npm}}</td>
-                        <td>{{item.dosen_wali}}</td>
-                        <td>{{item.ket}}</td>
-                        <td>{{item.thn_ajaran}}</td>
-                        <td align="center"><button class="btn btn-info" id="modal-428658"
-                                data-target="#modal-container-428658" data-toggle="modal"
-                                ng-click="GetData(item)">Ubah</button></td>
-                        <td align="center"><button class="btn btn-danger" ng-click="Hapus(item)">Hapus</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-
-
-        <div class="modal fade" id="modal-container-428658" role="dialog" aria-hidden="true"
-            aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel">
-                            Form Data Mahasiswa
-                        </h5>
-                        <button class="close" type="button" data-dismiss="modal">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Input Data KRS</h5>
+                </div>
+                <div class="card-body">
+                    <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12">
-                                <form role="form">
-                                    <div class="form-group">
-
-                                        <label for="npm">
-                                            NPM
-                                        </label>
-                                        <input class="form-control" id="npm" type="text" ng-model="input.npm" />
-                                    </div>
-                                    <div class="form-group">
-
-                                        <label for="nm_mahasiswa">
-                                            Nama Mahasiswa
-                                        </label>
-                                        <input class="form-control" id="nm_mahasiswa" type="text"
-                                            ng-model="input.nm_mahasiswa" />
-                                    </div>
-                                    <div class="form-group">
-
-                                        <label for="alamat">
-                                            Alamat
-                                        </label>
-                                        <input class="form-control" id="alamat" type="text" ng-model="input.alamat" />
-                                    </div>
-                                    <div class="form-group">
-
-                                        <label for="jurusan">
-                                            Jurusan
-                                        </label>
-                                        <select class="form-control"
-                                            ng-options="item as item.nm_jurusan for item in DatasJurusan track by item.nm_jurusan"
-                                            ng-model="SelectedJurusan"></select>
-                                    </div>
-                                    <div class="form-group">
-
-                                        <label for="jenjang">
-                                            Jenjang
-                                        </label>
-                                        <input class="form-control" id="jenjang" type="text" ng-model="input.jenjang" />
-                                    </div>
-                                </form>
+                            <div class="col-md-6 pr-1">
+                                <div class="form-group">
+                                    <label>ID KRS</label>
+                                    <input type="text" class="form-control" ng-model="input.id_krs">
+                                </div>
+                            </div>
+                            <div class="col-md-6 px-1">
+                                <div class="form-group">
+                                    <label>Nama Dosen Wali</label>
+                                    <select class="form-control"
+                                        ng-options="item as item.nip +'  -  '+ item.nm_pegawai for item in DatasPegawai track by item.nm_pegawai"
+                                        ng-model="SelectedPegawai"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label for="npm"><b>Cari NPM</b></label>
+                                    <input type="text" class="form-control" ng-model="Serach" ng-change="SetData()">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label>Nama Mahasiswa</label>
+                                    <input type="text" class="form-control" ng-model="SelectedMahasiswa.nm_mahasiswa"
+                                        disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                    <label>Jenjang</label>
+                                    <input type="text" class="form-control" ng-model="SelectedMahasiswa.jenjang"
+                                        disabled>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-
-                        <button class="btn btn-primary" type="submit" ng-click="Simpan()" data-dismiss="modal">
-                            Simpan
-                        </button>
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                            Close
-                        </button>
+                        <div class="row">
+                            <div class="col-md-6 pr-1">
+                                <div class="form-group">
+                                    <label>Jurusan</label>
+                                    <input type="text" class="form-control" ng-model="SelectedMahasiswa.nm_jurusan"
+                                        disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pr-1">
+                                <div class="form-group">
+                                    <label>Alamat</label>
+                                    <input type="text" class="form-control" ng-model="SelectedMahasiswa.alamat"
+                                        disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <tr align="center">
+                                        <th>#</th>
+                                        <th>KMK</th>
+                                        <th>Nama Matakuliah</th>
+                                        <th>SKS</th>
+                                        <th>Semester</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in DatasMatakuliah">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{item.kmk}}</td>
+                                        <td>{{item.nm_matakul}}</td>
+                                        <td>{{item.sks}}</td>
+                                        <td>{{item.semester}}</td>
+                                        <td class="td-actions">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox">
+                                                    <span class="form-check-sign"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="8" align="left"><a class="btn btn-success pull-right"
+                                                id="modal-428658" role="button" href=""
+                                                data-target="#modal-container-428658" data-toggle="modal">Simpan KRS</a>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-</div>
-
-<!-- Bootstrap core JavaScript-->
-<script src="assets/vendor/jquery/jquery.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Page level plugin JavaScript-->
-<script src="assets/vendor/chart.js/Chart.min.js"></script>
-<script src="assets/vendor/datatables/jquery.dataTables.js"></script>
-<script src="assets/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="assets/js/sb-admin.min.js"></script>
-
-<!-- Demo scripts for this page-->
-<script src="assets/js/demo/datatables-demo.js"></script>
-<script src="assets/js/demo/chart-area-demo.js"></script>

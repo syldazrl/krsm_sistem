@@ -9,7 +9,6 @@
                     method: "get",
                     url: Url
                 }).then(function (response) {
-                    alert("Sukses Login");
                     $window.sessionStorage.setItem("username", response.data.data.data.username);
                     $window.sessionStorage.setItem("nama", response.data.data.data.nama);
                     window.location.href = "index.html"

@@ -59,6 +59,8 @@
                     method: "DELETE",
                     url: "http://localhost/krsm_sistem/restapi/Thn_akademik/Hapus?Id_thn_akademik=" + item.Id_thn_akademik,
                 }).then(function (response) {
+                    var index = $scope.DatasThnAkademik.indexOf(item);
+                    $scope.DatasThnAkademik.splice(index, 1);
                     alert("Data Berhasil Dihapus");
                     $scope.DatasThnAkademik.push($scope.input);
                 }, function (error) {

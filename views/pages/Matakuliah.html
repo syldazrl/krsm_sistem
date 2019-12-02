@@ -1,0 +1,108 @@
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class=" text-primary">
+                    <tr>
+                        <th colspan="8" align="left"><a class="btn btn-success pull-right" id="modal-428658"
+                                role="button" href="" data-target="#modal-container-428658" data-toggle="modal">Tambah
+                                Data</a></th>
+                    </tr>
+                    <tr align="center">
+                        <th>#</th>
+                        <th>KMK</th>
+                        <th>Nama Matakuliah</th>
+                        <th>SKS</th>
+                        <th>Semester</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in DatasMatakuliah">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.kmk}}</td>
+                        <td>{{item.nm_matakul}}</td>
+                        <td>{{item.sks}}</td>
+                        <td>{{item.semester}}</td>
+                        
+                        <td align="center"><button class="btn btn-info" id="modal-428658"
+                                data-target="#modal-container-428658" data-toggle="modal"
+                                ng-click="GetData(item)">Ubah</button></td>
+                        <td align="center"><button class="btn btn-danger" ng-click="Hapus(item)">Hapus</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-428658" role="dialog" aria-hidden="true"
+            aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">
+                            Form Matakuliah
+                        </h5>
+                        <button class="close" type="button" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form role="form">
+                                    <div class="form-group">
+
+                                        <label for="kmk">
+                                            KMK
+                                        </label>
+                                        <input class="form-control" id="kmk" type="text" ng-model="input.kmk" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="nm_matakul">
+                                            Nama Matakuliah
+                                        </label>
+                                        <input class="form-control" id="nm_matakul" type="text"
+                                            ng-model="input.nm_matakul" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="sks">
+                                            SKS
+                                        </label>
+                                        <input class="form-control" id="sks" type="text" ng-model="input.sks" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="semester">
+                                            Semester
+                                        </label>
+                                        <input class="form-control" id="semester" type="text"
+                                            ng-model="input.semester" />
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button class="btn btn-primary" type="submit" ng-click="Simpan()">
+                            Simpan
+                        </button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

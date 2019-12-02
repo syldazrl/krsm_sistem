@@ -1,0 +1,105 @@
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Data Mahasiswa</h5>
+                </div>
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label for="npm"><b>Search</b></label>
+                        <input type="text" class="form-control" ng-model="Serach" ng-change="SetData()">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!-- <div class="row">
+                            <div class="col-md-6 pr-1">
+                                <div class="form-group">
+                                    <label for="npm"><b>Pilih NPM</b></label>
+                                    <select class="form-control"
+                                        ng-options="item as item.npm for item in DatasMahasiswa track by item.npm"
+                                        ng-model="SelectedMahasiswa" ng-change="SetData()"></select disabled>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Nama Mahasiswa</label>
+                                    <input type="text" class="form-control"
+                                        ng-model= "SelectedMahasiswa.nm_mahasiswa" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label>Jurusan</label>
+                                    <input type="text" class="form-control" 
+                                        ng-model= "SelectedMahasiswa.nm_jurusan" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                    <label>Jenjang</label>
+                                    <input type="text" class="form-control" ng-model="SelectedMahasiswa.jenjang" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Alamat</label>
+                                    <input type="text" class="form-control" 
+                                        ng-model= "SelectedMahasiswa.alamat" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <hr>
+                            <hr>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <tr align="center">
+                                        <th>#</th>
+                                        <th>KMK</th>
+                                        <th>Nama Matakuliah</th>
+                                        <th>SKS</th>
+                                        <th>Semester</th>
+                                        <th width="50">Kelas</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in DatasMatakuliah">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{item.kmk}}</td>
+                                        <td>{{item.nm_matakul}}</td>
+                                        <td>{{item.sks}}</td>
+                                        <td>{{item.semester}}</td>
+                                        <td>{{item.kelas}}</td>
+                                        <td class="td-actions">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox">
+                                                    <span class="form-check-sign"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="8" align="left"><a class="btn btn-success pull-right"
+                                                id="modal-428658" role="button" href=""
+                                                data-target="#modal-container-428658" data-toggle="modal">Simpan KRS</a>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

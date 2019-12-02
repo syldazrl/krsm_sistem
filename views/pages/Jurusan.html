@@ -1,0 +1,115 @@
+<div class="card">
+    <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                    <tr>
+                        <th colspan="8" align="left"><a class="btn btn-success pull-right" id="modal-428658"
+                                role="button" href="" data-target="#modal-container-428658" data-toggle="modal">Tambah
+                                Data</a></th>
+                    </tr>
+                    <tr align="center">
+                        <th>#</th>
+                        <th>Kode Jurusan</th>
+                        <th>Nama Jurusan</th>
+                        <th>Ketua Prodi</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in DatasJurusan">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.kd_jurusan}}</td>
+                        <td>{{item.nm_jurusan}}</td>
+                        <td>{{item.nm_pegawai}}</td>
+                        <td align="center"><button class="btn btn-info" id="modal-428658" data-target="#modal-container-428658" data-toggle="modal" ng-click="GetData(item)">Ubah</button></td>
+                        <td align="center"><button class="btn btn-danger" ng-click="Hapus(item)">Hapus</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-428658" role="dialog" aria-hidden="true"
+            aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">
+                            Form Data Jurusan
+                        </h5>
+                        <button class="close" type="button" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form role="form">
+                                    <div class="form-group">
+
+                                        <label for="kd_jurusan">
+                                            Kode Jurusan
+                                        </label>
+                                        <input class="form-control" id="kd_jurusan" type="text" ng-model="input.kd_jurusan" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="nm_jurusan">
+                                            Nama Jurusan
+                                        </label>
+                                        <input class="form-control" id="nm_jurusan" type="text"
+                                            ng-model="input.nm_jurusan" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="nip">
+                                            KA Prodi
+                                        </label>
+                                        <select class="form-control"
+                                        ng-options="item as item.nm_pegawai for item in DatasPegawai track by item.nm_pegawai"
+                                        ng-model="SelectedPegawai"></select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button class="btn btn-primary" type="submit" ng-click="Simpan()">
+                            Simpan
+                        </button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="assets/vendor/jquery/jquery.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Page level plugin JavaScript-->
+<script src="assets/vendor/chart.js/Chart.min.js"></script>
+<script src="assets/vendor/datatables/jquery.dataTables.js"></script>
+<script src="assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="assets/js/sb-admin.min.js"></script>
+
+<!-- Demo scripts for this page-->
+<script src="assets/js/demo/datatables-demo.js"></script>
+<script src="assets/js/demo/chart-area-demo.js"></script>

@@ -24,7 +24,6 @@ class Krs_model extends CI_Model
 
     public function insert($data){
         $this->db->trans_start();
-        
         $this->db->insert('krs', $data->krs);
         $id_krs = $this->db->insert_id();
         foreach ($data['detail_krs'] as $key => $value) {

@@ -9,7 +9,7 @@
             $scope.status = "Simpan";
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Thn_akademik/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Thn_akademik/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -23,7 +23,7 @@
                 if ($scope.status == "Simpan") {
                     $http({
                         method: "POST",
-                        url: "http://localhost/krs_sistem/restapi/Thn_akademik/Tambah",
+                        url: "http://localhost/krsm_sistem/restapi/Thn_akademik/Tambah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -42,7 +42,7 @@
                 } else {
                     $http({
                         method: "PUT",
-                        url: "http://localhost/krs_sistem/restapi/Thn_akademik/Ubah",
+                        url: "http://localhost/krsm_sistem/restapi/Thn_akademik/Ubah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -57,8 +57,10 @@
             $scope.Hapus = function (item) {
                 $http({
                     method: "DELETE",
-                    url: "http://localhost/krs_sistem/restapi/Thn_akademik/Hapus?Id_thn_akademik=" + item.Id_thn_akademik,
+                    url: "http://localhost/krsm_sistem/restapi/Thn_akademik/Hapus?Id_thn_akademik=" + item.Id_thn_akademik,
                 }).then(function (response) {
+                    var index = $scope.DatasThnAkademik.indexOf(item);
+                    $scope.DatasThnAkademik.splice(index, 1);
                     alert("Data Berhasil Dihapus");
                     $scope.DatasThnAkademik.push($scope.input);
                 }, function (error) {

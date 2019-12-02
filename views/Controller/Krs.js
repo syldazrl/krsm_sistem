@@ -7,7 +7,7 @@
             $scope.DatasThnAkademik = [];
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Krs/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Krs/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -16,7 +16,7 @@
             })
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Krs/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Krs/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -25,7 +25,7 @@
             })
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Thn_akademik/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Thn_akademik/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }

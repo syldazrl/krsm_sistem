@@ -11,7 +11,7 @@
             $scope.status = "Simpan";
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/DosenWali/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/DosenWali/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -21,7 +21,7 @@
 
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Pegawai/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Pegawai/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -31,7 +31,7 @@
 
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Mahasiswa/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Mahasiswa/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -48,7 +48,7 @@
                     $scope.input.npm = $scope.SelectedMahasiswa.npm;
                     $http({
                         method: "POST",
-                        url: "http://localhost/krs_sistem/restapi/DosenWali/Tambah",
+                        url: "http://localhost/krsm_sistem/restapi/DosenWali/Tambah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -66,7 +66,7 @@
                 } else {
                     $http({
                         method: "PUT",
-                        url: "http://localhost/krs_sistem/restapi/DosenWali/Ubah",
+                        url: "http://localhost/krsm_sistem/restapi/DosenWali/Ubah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -82,7 +82,7 @@
             $scope.Hapus = function (item) {
                 $http({
                     method: "DELETE",
-                    url: "http://localhost/krs_sistem/restapi/DosenWali/Hapus?IdDosenWali=" + item.IdDosenWali,
+                    url: "http://localhost/krsm_sistem/restapi/DosenWali/Hapus?IdDosenWali=" + item.IdDosenWali,
                 }).then(function (response) {
                     var index = $scope.DatasDosenWali.indexOf(item);
                     $scope.DatasDosenWali.splice(index, 1);

@@ -4,7 +4,7 @@
         .controller("UserController", function ($scope, $http, $window) {
             $scope.input = {};
             $scope.Login = function () {
-                var Url = "http://localhost/krs_sistem/restapi/User?username=" + $scope.input.username + "&password=" + $scope.input.password;
+                var Url = "http://localhost/krsm_sistem/restapi/User?username=" + $scope.input.username + "&password=" + $scope.input.password;
                 $http({
                     method: "get",
                     url: Url

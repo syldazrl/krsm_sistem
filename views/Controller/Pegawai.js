@@ -8,7 +8,7 @@
             $scope.status = "Simpan";
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Pegawai/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Pegawai/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -22,7 +22,7 @@
                 if ($scope.status == "Simpan") {
                     $http({
                         method: "POST",
-                        url: "http://localhost/krs_sistem/restapi/Pegawai/Tambah",
+                        url: "http://localhost/krsm_sistem/restapi/Pegawai/Tambah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -36,7 +36,7 @@
                 } else {
                     $http({
                         method: "PUT",
-                        url: "http://localhost/krs_sistem/restapi/Pegawai/Ubah",
+                        url: "http://localhost/krsm_sistem/restapi/Pegawai/Ubah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -51,7 +51,7 @@
             $scope.Hapus = function (item) {
                 $http({
                     method: "DELETE",
-                    url: "http://localhost/krs_sistem/restapi/Pegawai/Hapus?nip=" + item.nip,
+                    url: "http://localhost/krsm_sistem/restapi/Pegawai/Hapus?nip=" + item.nip,
                 }).then(function (response) {
                     alert("Data Berhasil Dihapus");
                     $scope.DatasPegawai.push($scope.input);

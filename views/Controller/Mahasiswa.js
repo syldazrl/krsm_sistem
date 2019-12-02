@@ -9,7 +9,7 @@
         $scope.status = "Simpan";
         $http({
             method: "get",
-            url: "http://localhost/krs_sistem/restapi/Mahasiswa/Panggil",
+            url: "http://localhost/krsm_sistem/restapi/Mahasiswa/Panggil",
             header: {
                 "Content-Type": "application/json"
             }
@@ -19,7 +19,7 @@
 
         $http({
             method: "get",
-            url: "http://localhost/krs_sistem/restapi/Jurusan/Panggil",
+            url: "http://localhost/krsm_sistem/restapi/Jurusan/Panggil",
             header: {
                 "Content-Type": "application/json"
             }
@@ -32,7 +32,7 @@
                 $scope.input.kd_jurusan = $scope.SelectedJurusan.kd_jurusan;
                 $http({
                     method: "POST",
-                    url: "http://localhost/krs_sistem/restapi/Mahasiswa/Tambah",
+                    url: "http://localhost/krsm_sistem/restapi/Mahasiswa/Tambah",
                     data: $scope.input,
                     header: {
                         "Content-Type": "application/json"
@@ -49,7 +49,7 @@
                 delete $scope.input.nm_jurusan;
                 $http({
                     method: "PUT",
-                    url: "http://localhost/krs_sistem/restapi/Mahasiswa/Ubah",
+                    url: "http://localhost/krsm_sistem/restapi/Mahasiswa/Ubah",
                     data: $scope.input,
                     header: {
                         "Content-Type": "application/json"
@@ -65,7 +65,7 @@
         $scope.Hapus = function (item) {
             $http({
                 method: "DELETE",
-                url: "http://localhost/krs_sistem/restapi/Mahasiswa/Hapus?npm=" + item.npm,
+                url: "http://localhost/krsm_sistem/restapi/Mahasiswa/Hapus?npm=" + item.npm,
             }).then(function (response) {
                 var index = $scope.DatasMahasiswa.indexOf(item);
                 $scope.DatasMahasiswa.splice(index, 1);

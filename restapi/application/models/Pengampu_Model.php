@@ -1,6 +1,6 @@
 <?php
 
-class Pengampu_Model extends CI_Model
+class Pengampu_model extends CI_Model
 {
     public function get($id){
         if($id != null){
@@ -11,46 +11,50 @@ class Pengampu_Model extends CI_Model
         else {
             $result = $this->db->query("
             SELECT
-            *
-          FROM
-            `pengampu`
-            RIGHT JOIN `matakuliah` ON `matakuliah`.`kmk` = `pengampu`.`kmk`
-            RIGHT JOIN `thn_akademik` ON `thn_akademik`.`Id_thn_akademik` =
-          `pengampu`.`Id_thn_akademik`
-            RIGHT JOIN `pegawai` ON `pegawai`.`nip` = `pengampu`.`nip`
+            `pengampu`.*,
+                thn_akademik.thn_ajaran,
+                matakuliah.kmk, matakuliah.nm_matakul, 
+                pegawai.nip, pegawai.nm_pegawai
+            FROM
+                `pengampu`
+                INNER JOIN `thn_akademik` ON `thn_akademik`.`thn_ajaran` = `pengampu`.`thn_ajaran`
+                INNER JOIN `matakuliah` ON `matakuliah`.`kmk` = `pengampu`.`kmk`
+                INNER JOIN `pegawai` ON `pegawai`.`nip` = `pengampu`.`nip`
             ");
             return $result->result_array();
         }
     }
 
     public function insert($data){
-        $this->db->insert("dosen_wali", $data);
+        $this->db->insert("pengampu", $data);
         $result = $this->db->query("
-        SELECT
-        *
-      FROM
-        `pengampu`
-        RIGHT JOIN `matakuliah` ON `matakuliah`.`kmk` = `pengampu`.`kmk`
-        RIGHT JOIN `thn_akademik` ON `thn_akademik`.`Id_thn_akademik` =
-      `pengampu`.`Id_thn_akademik`
-        RIGHT JOIN `pegawai` ON `pegawai`.`nip` = `pengampu`.`nip`
+            SELECT
+                'pengampu'.*,
+                thn_akademik.thn_ajaran,
+                matakuliah.kmk, matakuliah.nm_matakul, 
+                pegawai.nip, pegawai.nm_pegawai
+            FROM
+                `pengampu`
+                INNER JOIN `thn_akademik` ON `thn_akademik`.`thn_ajaran` = `pengampu`.`thn_ajaran`
+                INNER JOIN `matakuliah` ON `matakuliah`.`kmk` = `pengampu`.`kmk`
+                INNER JOIN `pegawai` ON `pegawai`.`nip` = `pengampu`.`nip`
             WHERE
                 pengampu.kmk = '$data->kmk' and
                 pengampu.nip = '$data->nip' and
-                pengampu.id_thn_akademik = '$data->id_thn_akademik'
+                pengampu.thn_ajaran = '$data->thn_ajaran'
         ");
         return $result->result_array();
     }
 
     public function update($data){
-        $this->db->where("npm", $data->npm);
-        $result =  $this->db->update("dosen_wali", $data);
+        $this->db->where("id_pengampu", $data->nip);
+        $result =  $this->db->update("pengampu", $data);
         return $result;
     }
 
     public function delete($id){
-        $this->db->where('npm', $id['npm']);
-        $result = $this->db->delete('dosen_wali');
+        $this->db->where('id_pengampu', $id['id_pengampu']);
+        $result = $this->db->delete('pengampu');
         return $result;
     }
 }

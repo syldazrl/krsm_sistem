@@ -1,16 +1,16 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
 require APPPATH . '/libraries/API_Controller.php';
-class Pengampu extends API_Controller
+class Krs extends API_Controller
 {
     public function __construct(){
         parent::__construct();
-        $this->load->model("Pengampu_Model", "PengampuModel");
+        $this->load->model("Pengampu_model", "Pengampumodel");
     }
 
     public function Panggil(){
         $id = $_GET;
-        $result = $this->PengampuModel->get($id);
+        $result = $this->Pengampumodel->get($id);
         if(!empty($result)){
             $this->api_return(
                 [
@@ -28,17 +28,17 @@ class Pengampu extends API_Controller
 
     public function Tambah(){
         $pos = $this->input->raw_input_stream;
-        $data = $this->PengampuModel->insert(json_decode($pos));
+        $data = $this->KrsModel->insert(json_decode($pos));
         if($data){
             $this->api_return(
                 [
-                    'status' => "Data berhasil disimpan"
+                    'status' => "Data Berhasil Disimpan"
                 ],
         200);
         }else{
             $this->api_return(
                 [
-                    'status' => "Data gagal disimpan"
+                    'status' => "Data Gagal Disimpan"
                 ],
         400);
         }
@@ -46,17 +46,17 @@ class Pengampu extends API_Controller
 
     public function Ubah(){
         $pos =json_decode($this->input->raw_input_stream);
-        $data = $this->PengampuModel->update($pos);
+        $data = $this->KrsModel->update($pos);
         if($data){
             $this->api_return(
                 [
-                    'status' =>"Data berhasil diubah"
+                    'status' => true
                 ],
         200);
         }else{
             $this->api_return(
                 [
-                    'status' => "Data gagal diubah"
+                    'status' => false
                 ],
         400);
         }
@@ -64,7 +64,7 @@ class Pengampu extends API_Controller
 
     public function Hapus(){
         $id = $_GET;
-        $result = $this->PengampuModel->delete($id);
+        $result = $this->KrsModel->delete($id);
         if($result){
             $this->api_return(
                 [

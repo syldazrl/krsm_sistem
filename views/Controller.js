@@ -2,7 +2,7 @@
     'use strict'
     angular.module("MyController", [
         "Mahasiswa", "Login", "Matakuliah", "Jurusan", "Pegawai", "TahunAkademik",
-        "DosenWali", "Pengampu", "Krs", "Home"
+        "DosenWali", "Krs", "Home"
     ])
 
 })(window.angular);

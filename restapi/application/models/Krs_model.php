@@ -10,40 +10,38 @@ class Krs_model extends CI_Model
         }
         else {
             $result = $this->db->query("
-            SELECT
-            `krs`.*,
-                thn_akademik.thn_ajaran,
-                matakuliah.kmk, matakuliah.nm_matakul, 
-                mahasiswa.npm, mahasiswa.nm_mahasiswa
-            FROM
-                `krs`
-                INNER JOIN `thn_akademik` ON `thn_akademik`.`thn_ajaran` = `krs`.`thn_ajaran`
-                INNER JOIN `matakuliah` ON `matakuliah`.`kmk` = `krs`.`kmk`
-                INNER JOIN `mahasiswa` ON `mahasiswa`.`npm` = `krs`.`npm`
+                SELECT
+                    `detail_krs`.`id_krs`,
+                    `detail_krs`.`id_pengampu`
+                FROM
+                    `krs`
+                    LEFT JOIN `detail_krs` ON `detail_krs`.`id_krs` = `krs`.`id_krs`
+                    LEFT JOIN `pengampu` ON `detail_krs`.`id_pengampu` = `pengampu`.`id_pengampu`
             ");
             return $result->result_array();
         }
     }
 
     public function insert($data){
-        $this->db->insert("krs", $data);
-        $result = $this->db->query("
-            SELECT
-                'krs'.*,
-                thn_akademik.thn_ajaran,
-                matakuliah.kmk, matakuliah.nm_matakul, 
-                mahasiswa.npm, mahasiswa.nm_mahasiswa
-            FROM
-                `krs`
-                INNER JOIN `thn_akademik` ON `thn_akademik`.`thn_ajaran` = `krs`.`thn_ajaran`
-                INNER JOIN `matakuliah` ON `matakuliah`.`kmk` = `krs`.`kmk`
-                INNER JOIN `mahasiswa` ON `mahasiswa`.`npm` = `krs`.`npm`
-            WHERE
-                krs.kmk = '$data->kmk' and
-                krs.npm = '$data->npm' and
-                krs.thn_ajaran = '$data->thn_ajaran'
-        ");
-        return $result->result_array();
+        $this->db->trans_start();
+        
+        $this->db->insert('krs', $data->krs);
+        $id_krs = $this->db->insert_id();
+        foreach ($data['detail_krs'] as $key => $value) {
+            $detail = [
+                'id_pengampu' => $value['id_pengampu'],
+                'id_krs' => $id_krs
+            ];
+        $this->db->insert("detail_krs", $detail);
+        }
+        $this->db->stream_complete();
+
+        if($this->db->trans_status() == false){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     public function update($data){

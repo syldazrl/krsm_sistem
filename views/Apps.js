@@ -39,11 +39,6 @@
                     templateUrl: "views/pages/DosenWali.html",
                     controller: "DosenWaliController"
                 })
-                .state("Pengampu", {
-                    url: "/Pengampu",
-                    templateUrl: "views/pages/Pengampu.html",
-                    controller: "PengampuController"
-                })
                 .state("Krs", {
                     url: "/Krs",
                     templateUrl: "views/pages/Krs.html",

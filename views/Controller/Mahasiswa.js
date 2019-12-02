@@ -3,14 +3,13 @@
     angular.module("Mahasiswa", [])
     .controller("MahasiswaController", function ($scope, $http) {
         $scope.DatasMahasiswa = [];
-        $scope.Datasjenjang=[{"jenjang":"D3"},{"jenjang":"S1"}];
         $scope.input = {};
         $scope.DatasJurusan = [];
         $scope.SelectedJurusan = {};
         $scope.status = "Simpan";
         $http({
             method: "get",
-            url: "http://localhost/krsm_sistem/restapi/Mahasiswa/Panggil",
+            url: "http://localhost/krs_sistem/restapi/Mahasiswa/Panggil",
             header: {
                 "Content-Type": "application/json"
             }
@@ -20,7 +19,7 @@
 
         $http({
             method: "get",
-            url: "http://localhost/krsm_sistem/restapi/Jurusan/Panggil",
+            url: "http://localhost/krs_sistem/restapi/Jurusan/Panggil",
             header: {
                 "Content-Type": "application/json"
             }
@@ -33,7 +32,7 @@
                 $scope.input.kd_jurusan = $scope.SelectedJurusan.kd_jurusan;
                 $http({
                     method: "POST",
-                    url: "http://localhost/krsm_sistem/restapi/Mahasiswa/Tambah",
+                    url: "http://localhost/krs_sistem/restapi/Mahasiswa/Tambah",
                     data: $scope.input,
                     header: {
                         "Content-Type": "application/json"
@@ -50,7 +49,7 @@
                 delete $scope.input.nm_jurusan;
                 $http({
                     method: "PUT",
-                    url: "http://localhost/krsm_sistem/restapi/Mahasiswa/Ubah",
+                    url: "http://localhost/krs_sistem/restapi/Mahasiswa/Ubah",
                     data: $scope.input,
                     header: {
                         "Content-Type": "application/json"

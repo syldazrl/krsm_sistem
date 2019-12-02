@@ -4,7 +4,7 @@
             <table class="table">
                 <thead class=" text-primary">
                     <tr>
-                        <th colspan="8" align="left"><a class="btn btn-success pull-right" id="modal-428658"
+                        <th colspan="8" align="left"><a class="btn btn-success pull-right" ng-click="GetSimpan()" id="modal-428658"
                                 role="button" href="" data-target="#modal-container-428658" data-toggle="modal">Tambah
                                 Data</a></th>
                     </tr>
@@ -93,8 +93,7 @@
                                         <label for="jenjang">
                                             Jenjang
                                         </label>
-                                    <select class="form-control"  ng-options="item.jenjang as item.jenjang for item in Datasjenjang track by item.jenjang"
-                                        ng-model="input.jenjang"></select>  
+                                        <input class="form-control" id="jenjang" type="text" ng-model="input.jenjang" />
                                     </div>
                                 </form>
                             </div>

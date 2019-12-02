@@ -4,7 +4,7 @@ class DosenWali_model extends CI_Model
 {
     public function get($id){
         if($id != null){
-            $this->db->where('nip', $id['nip']);
+            $this->db->where('IdDosenWali', $id['IdDosenWali']);
             $result = $this->db->get('dosen_wali');
             return $result->result_array();
         }
@@ -38,13 +38,13 @@ class DosenWali_model extends CI_Model
     }
 
     public function update($data){
-        $this->db->where("npm", $data->npm);
+        $this->db->where("IdDosenWali", $data->IdDosenWali);
         $result =  $this->db->update("dosen_wali", $data);
         return $result;
     }
 
     public function delete($id){
-        $this->db->where('npm', $id['npm']);
+        $this->db->where('IdDosenWali', $id['IdDosenWali']);
         $result = $this->db->delete('dosen_wali');
         return $result;
     }

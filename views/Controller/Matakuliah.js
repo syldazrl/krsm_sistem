@@ -5,10 +5,11 @@
         .controller("MatakuliahController", function ($scope, $http) {
             $scope.DatasMatakuliah = [];
             $scope.input = {};
+            ["car", "cricket", "metro"];
             $scope.status = "Simpan";
             $http({
                 method: "get",
-                url: "http://localhost/krsm_sistem/restapi/Matakuliah/Panggil",
+                url: "http://localhost/krs_sistem/restapi/Matakuliah/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -22,7 +23,7 @@
                 if ($scope.status == "Simpan") {
                     $http({
                         method: "POST",
-                        url: "http://localhost/krsm_sistem/restapi/Matakuliah/Tambah",
+                        url: "http://localhost/krs_sistem/restapi/Matakuliah/Tambah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -36,7 +37,7 @@
                 } else {
                     $http({
                         method: "PUT",
-                        url: "http://localhost/krsm_sistem/restapi/Matakuliah/Ubah",
+                        url: "http://localhost/krs_sistem/restapi/Matakuliah/Ubah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -51,7 +52,7 @@
             $scope.Hapus = function (item) {
                 $http({
                     method: "DELETE",
-                    url: "http://localhost/krsm_sistem/restapi/Matakuliah/Hapus?kmk=" + item.kmk,
+                    url: "http://localhost/krs_sistem/restapi/Matakuliah/Hapus?kmk=" + item.kmk,
                 }).then(function (response) {
                     var index = $scope.DatasMatakuliah.indexOf(item);
                     $scope.DatasMatakuliah.splice(index, 1);

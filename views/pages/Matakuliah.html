@@ -4,7 +4,7 @@
             <table class="table">
                 <thead class=" text-primary">
                     <tr>
-                        <th colspan="8" align="left"><a class="btn btn-success pull-right" id="modal-428658"
+                        <th colspan="8" align="left"><a class="btn btn-success pull-right" ng-click="GetSimpan()" id="modal-428658"
                                 role="button" href="" data-target="#modal-container-428658" data-toggle="modal">Tambah
                                 Data</a></th>
                     </tr>
@@ -13,7 +13,7 @@
                         <th>KMK</th>
                         <th>Nama Matakuliah</th>
                         <th>SKS</th>
-                        <th>Semester</th>
+                        <th width="50">Semester</th>
                         <th colspan="2">Action</th>
                     </tr>
                 </thead>
@@ -24,7 +24,6 @@
                         <td>{{item.nm_matakul}}</td>
                         <td>{{item.sks}}</td>
                         <td>{{item.semester}}</td>
-                        
                         <td align="center"><button class="btn btn-info" id="modal-428658"
                                 data-target="#modal-container-428658" data-toggle="modal"
                                 ng-click="GetData(item)">Ubah</button></td>
@@ -84,7 +83,6 @@
                                         <input class="form-control" id="semester" type="text"
                                             ng-model="input.semester" />
                                     </div>
-                                    
                                 </form>
                             </div>
                         </div>

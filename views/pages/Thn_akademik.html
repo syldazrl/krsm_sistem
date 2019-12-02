@@ -4,7 +4,7 @@
             <table class="table">
                 <thead class=" text-primary">
                     <tr>
-                        <th colspan="8" align="left"><a class="btn btn-success pull-right" id="modal-428658"
+                        <th colspan="8" align="left"><a class="btn btn-success pull-right" ng-click="GetSimpan()" id="modal-428658"
                                 role="button" href="" data-target="#modal-container-428658" data-toggle="modal">Tambah
                                 Data</a></th>
                     </tr>
@@ -12,15 +12,16 @@
                         <th>#</th>
                         <th>Tahun Ajaran</th>
                         <th>Semester</th>
+                        <th>Keterangan</th>
                         <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="item in DatasThnAkademik">
-                        <td>{{item.id_thn_ajaran}}</td>
+                        <td>{{$index+1}}</td>
                         <td>{{item.thn_ajaran}}</td>
                         <td>{{item.semester}}</td>
-                        <td>{{item.kelas}}</td>
+                        <td>{{item.status}}</td>
                         <td align="center"><button class="btn btn-info" id="modal-428658" data-target="#modal-container-428658"
                                 data-toggle="modal" ng-click="GetData(item)">Ubah</button></td>
                         <td align="center"><button class="btn btn-danger" ng-click="Hapus(item)">Hapus</button></td>
@@ -34,8 +35,6 @@
 
 <div class="row">
     <div class="col-md-12">
-
-
         <div class="modal fade" id="modal-container-428658" role="dialog" aria-hidden="true"
             aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -61,22 +60,20 @@
                                             ng-model="input.thn_ajaran" />
                                     </div>
                                     <div class="form-group">
-
                                         <label for="semester">
                                             Semester
                                         </label>
-                                        <select  class="form-control"
-                                        ng-options="item.semester as item.semester for item in Datasemester track by item.semester"
-                                        ng-model="input.semester" ></select>
+                                        <input class="form-control" id="semester" type="text"
+                                            ng-model="input.semester" />
                                     </div>
                                     <div class="form-group">
-
-                                            <label for="kelas">
-                                                Kelas
-                                            </label>
-                                            <input class="form-control" id="kelas" type="text"
-                                                ng-model="input.kelas" />
-                                        </div>
+                                        <label for="status">
+                                            Keterangan
+                                        </label>
+                                        <select class="form-control"
+                                            ng-options="item.status as item.status for item in DatasStatus track by item.status"
+                                            ng-model="input.status"></select>
+                                    </div>
                                 </form>
                             </div>
                         </div>

@@ -11,7 +11,7 @@
             $scope.status = "Simpan";
             $http({
                 method: "get",
-                url: "http://localhost/krsm_sistem/restapi/Jurusan/Panggil",
+                url: "http://localhost/krs_sistem/restapi/Jurusan/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -21,7 +21,7 @@
 
             $http({
                 method: "get",
-                url: "http://localhost/krsm_sistem/restapi/Pegawai/Panggil",
+                url: "http://localhost/krs_sistem/restapi/Pegawai/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -34,7 +34,7 @@
                     $scope.input.nip = $scope.SelectedPegawai.nip;
                     $http({
                         method: "POST",
-                        url: "http://localhost/krsm_sistem/restapi/Jurusan/Tambah",
+                        url: "http://localhost/krs_sistem/restapi/Jurusan/Tambah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -51,7 +51,7 @@
                     delete $scope.input.nm_pegawai;
                     $http({
                         method: "PUT",
-                        url: "http://localhost/krsm_sistem/restapi/Jurusan/Ubah",
+                        url: "http://localhost/krs_sistem/restapi/Jurusan/Ubah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -67,7 +67,7 @@
             $scope.Hapus = function (item) {
                 $http({
                     method: "DELETE",
-                    url: "http://localhost/krsm_sistem/restapi/Jurusan/Hapus?kd_jurusan=" + item.kd_jurusan,
+                    url: "http://localhost/krs_sistem/restapi/Jurusan/Hapus?kd_jurusan=" + item.kd_jurusan,
                 }).then(function (response) {
                     var index = $scope.DatasJurusan.indexOf(item);
                     $scope.DatasJurusan.splice(index, 1);

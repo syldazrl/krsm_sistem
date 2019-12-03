@@ -6,7 +6,7 @@
             // $scope.DatasDosenWali = [];
             $scope.DatasKrs = [];
             $scope.DatasPegawai = [];
-            $scope.DatasMatakuliah = [];
+            $scope.DatasPengampu = [];
             $scope.DatasMahasiswa = [];
             $scope.DatasThnAkademik = [];
             $scope.SelectedPegawai ={};
@@ -17,7 +17,7 @@
             $scope.status = "Simpan";
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Krs/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Krs/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -27,7 +27,7 @@
 
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Mahasiswa/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Mahasiswa/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -37,7 +37,7 @@
 
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Pegawai/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Pegawai/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -47,17 +47,17 @@
 
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Matakuliah/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Matakul/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
             }).then(function (response) {
-                $scope.DatasMatakuliah = response.data.data;
+                $scope.DatasPengampu = response.data.data;
             })
 
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Thn_akademik/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Thn_akademik/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -88,7 +88,7 @@
                     $scope.input.thn_ajaran = $scope.SelectedThnAkademik.thn_ajaran;
                     $http({
                         method: "POST",
-                        url: "http://localhost/krs_sistem/restapi/Krs/Tambah",
+                        url: "http://localhost/krsm_sistem/restapi/Krs/Tambah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -103,7 +103,7 @@
                 } else {
                     $http({
                         method: "PUT",
-                        url: "http://localhost/krs_sistem/restapi/Krs/Ubah",
+                        url: "http://localhost/krsm_sistem/restapi/Krs/Ubah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -119,7 +119,7 @@
             $scope.Hapus = function (item) {
                 $http({
                     method: "DELETE",
-                    url: "http://localhost/krs_sistem/restapi/Krs/Hapus?id_krs=" + item.id_krs,
+                    url: "http://localhost/krsm_sistem/restapi/Krs/Hapus?id_krs=" + item.id_krs,
                 }).then(function (response) {
                     var index = $scope.DatasKrs.indexOf(item);
                     $scope.DatasKrs.splice(index, 1);

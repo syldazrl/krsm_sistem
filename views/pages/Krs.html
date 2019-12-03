@@ -69,16 +69,18 @@
                                         <th>Nama Matakuliah</th>
                                         <th>SKS</th>
                                         <th>Semester</th>
+                                        <th>Kelas</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="item in DatasMatakuliah">
+                                    <tr ng-repeat="item in DatasPengampu">
                                         <td>{{$index+1}}</td>
                                         <td>{{item.kmk}}</td>
                                         <td>{{item.nm_matakul}}</td>
                                         <td>{{item.sks}}</td>
                                         <td>{{item.semester}}</td>
+                                        <td>{{item.kelas}}</td>
                                         <td class="td-actions">
                                             <div class="form-check">
                                                 <label class="form-check-label">
@@ -102,3 +104,4 @@
             </div>
         </div>
     </div>
+</div>

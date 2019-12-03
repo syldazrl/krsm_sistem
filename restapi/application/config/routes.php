@@ -82,6 +82,7 @@ $route['Jurusan']['get'] = 'Jurusan/Panggil';
 $route['Jurusan']['post'] = 'Jurusan/Tambah';
 $route['Jurusan']['delete'] = 'Jurusan/Ubah';
 $route['Jurusan']['put'] = 'Jurusan/Hapus';
+$route['Matakul']['get'] = 'Matakul/Panggil';
 $route['Krs']['get'] = 'Krs/Panggil';
 $route['Krs']['post'] = 'Krs/Tambah';
 $route['Krs']['delete'] = 'Krs/Ubah';

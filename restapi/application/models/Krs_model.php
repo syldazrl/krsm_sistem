@@ -3,48 +3,48 @@
 class Krs_model extends CI_Model
 {
     public function get($id){
-        if($id != null){
-            $this->db->where('id_krs', $id['id_krs']);
-            $result = $this->db->get('krs');
-            return $result->result_array();
-        }
-        else {
-            $result = $this->db->query("
-                SELECT
-                    `detail_krs`.`id_krs`,
-                    `detail_krs`.`id_pengampu`
-                FROM
-                    `krs`
-                    LEFT JOIN `detail_krs` ON `detail_krs`.`id_krs` = `krs`.`id_krs`
-                    LEFT JOIN `pengampu` ON `detail_krs`.`id_pengampu` = `pengampu`.`id_pengampu`
-            ");
-            return $result->result_array();
+        $this->db->where("id_krs", $data['id_krs']);
+        $this->db->where("dosen_wali", $data['dosen_wali']);
+        $this->db->where("npm", $data['npm']);
+        $this->db->where("ket", $data['ket']);
+        $this->db->where("Id_thn_akademik", $data['Id_thn_akademik']);
+        $result = $this->db->get("krs");
+        if($result->num_rows()>0){
+            return true;
+        }else{
+            return false;
         }
     }
 
     public function insert($data){
         $this->db->trans_start();
-        $this->db->insert('krs', $data->krs);
+        $DataKRS = [
+            'dosen_wali'=>$data->dosen_wali,
+            'npm'=>$data->npm,
+            'ket'=>$data->ket,
+            'Id_thn_akademik'=>$data->Id_thn_akademik
+        ];
+        $this->db->insert('krs', $DataKRS);
         $id_krs = $this->db->insert_id();
-        foreach ($data['detail_krs'] as $key => $value) {
+        foreach ($data->detail_krs as $key => $value) {
             $detail = [
-                'id_pengampu' => $value['id_pengampu'],
+                'id_pengampu' => $value->id_pengampu,
                 'id_krs' => $id_krs
             ];
-        $this->db->insert("detail_krs", $detail);
+            $this->db->insert("detail_krs", $detail);
         }
-        $this->db->stream_complete();
-
         if($this->db->trans_status() == false){
+            $this->db->trans_rollback();
             return false;
-        }
-        else{
+        }else{
+            $this->db->trans_complete();
             return true;
         }
+        return $result;
     }
 
     public function update($data){
-        $this->db->where("id_krs", $data->npm);
+        $this->db->where("id_krs", $data->id_krs);
         $result =  $this->db->update("krs", $data);
         return $result;
     }

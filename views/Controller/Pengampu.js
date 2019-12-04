@@ -5,19 +5,30 @@
         .controller("PengampuController", function ($scope, $http) {
             // $scope.DatasDosenWali = [];
             $scope.DatasPengampu = [];
+            $scope.Dataskelas=[{"kelas":"A"},{"kelas":"B"}];
             $scope.DatasPegawai = [];
             $scope.SelectedPegawai={};
             $scope.DatasMatakuliah = [];
             $scope.DatasThnAkademik = [];
             $scope.SelectedThnAkademik={};
-            $scope.DatasKelas=[{"kelas":"A"},{"kelas":"B"},{"kelas":"C"}];
+            $scope.input={};
             $scope.Serach="";
-            $scope.Input={};
+            
+           
             var a = $scope.SelectedPegawai.valueOf.length;
             $scope.status = "Simpan";
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Pegawai/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Pengampu/Panggil",
+                header: {
+                    "Content-Type": "application/json"
+                }
+            }).then(function (response) {
+                $scope.DatasPengampu = response.data.data;
+            })
+            $http({
+                method: "get",
+                url: "http://localhost/krsm_sistem/restapi/Pegawai/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -27,7 +38,7 @@
 
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Matakuliah/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Matakuliah/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -37,7 +48,7 @@
 
             $http({
                 method: "get",
-                url: "http://localhost/krs_sistem/restapi/Thn_akademik/Panggil",
+                url: "http://localhost/krsm_sistem/restapi/Thn_akademik/Panggil",
                 header: {
                     "Content-Type": "application/json"
                 }
@@ -61,29 +72,29 @@
                 $scope.input = {};
                 $scope.input.kmk = $scope.SelectedMatakuliah.kmk;
                 $scope.input.nip = $scope.SelectedPegawai.nip;
-                $scope.input.thn_ajaran = $scope.SelectedThnAkademik.thn_ajaran;
+                $scope.input.Id_thn_akademik = $scope.SelectedThnAkademik.Id_thn_akademik;
                 if ($scope.status == "Simpan") {
+                    
                     $scope.input.kmk = $scope.SelectedMatakuliah.kmk;
                     $scope.input.nip = $scope.SelectedPegawai.nip;
-                    $scope.input.thn_ajaran = $scope.SelectedThnAkademik.thn_ajaran;
+                    $scope.input.Id_thn_akademik = $scope.SelectedThnAkademik.Id_thn_akademik;
                     $http({
                         method: "POST",
-                        url: "http://localhost/krs_sistem/restapi/Pengampu/Tambah",
+                        url: "http://localhost/krsm_sistem/restapi/Pengampu/Tambah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
                         }
                     }).then(function (response) {
-                        $scope.DatasPengampu.push(response.data.data[0]);
+                        $scope.DatasPengampu.push(angular.copy($scope.input));
                         alert("Data Berhasil disimpan");
                     }, function (error) {
-                        console.log(error.message);
                         alert("Data gagal disimpan");
                     })
                 } else {
                     $http({
                         method: "PUT",
-                        url: "http://localhost/krs_sistem/restapi/Pengampu/Ubah",
+                        url: "http://localhost/krsm_sistem/restapi/Pengampu/Ubah",
                         data: $scope.input,
                         header: {
                             "Content-Type": "application/json"
@@ -99,7 +110,7 @@
             $scope.Hapus = function (item) {
                 $http({
                     method: "DELETE",
-                    url: "http://localhost/krs_sistem/restapi/Pengampu/Hapus?id_pengampu=" + item.id_pengampu,
+                    url: "http://localhost/krsm_sistem/restapi/Pengampu/Hapus?id_pengampu=" + item.id_pengampu,
                 }).then(function (response) {
                     var index = $scope.DatasPengampu.indexOf(item);
                     $scope.DatasPengampu.splice(index, 1);
@@ -129,7 +140,7 @@
                     }
                 })
                 angular.forEach($scope.DatasThnAkademik, function (value, key) {
-                    if (value.thn_ajaran == item.thn_ajaran) {
+                    if (value.Id_thn_akademik == item.Id_thn_akademik) {
                         $scope.SelectedThnAkademik = value;
                     }
                 })

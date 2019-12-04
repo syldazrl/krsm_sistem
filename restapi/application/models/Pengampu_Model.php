@@ -1,6 +1,6 @@
 <?php
 
-class Pengampu_model extends CI_Model
+class Pengampu_Model extends CI_Model
 {
     public function get($id){
         if($id != null){
@@ -11,39 +11,20 @@ class Pengampu_model extends CI_Model
         else {
             $result = $this->db->query("
             SELECT
-            `pengampu`.*,
-                thn_akademik.thn_ajaran,
-                matakuliah.kmk, matakuliah.nm_matakul, 
-                pegawai.nip, pegawai.nm_pegawai
-            FROM
+                *
+                FROM
                 `pengampu`
-                INNER JOIN `thn_akademik` ON `thn_akademik`.`thn_ajaran` = `pengampu`.`thn_ajaran`
                 INNER JOIN `matakuliah` ON `matakuliah`.`kmk` = `pengampu`.`kmk`
-                INNER JOIN `pegawai` ON `pegawai`.`nip` = `pengampu`.`nip`
+                INNER JOIN `thn_akademik` ON `thn_akademik`.`Id_thn_akademik` =
+                `pengampu`.`Id_thn_akademik`
             ");
             return $result->result_array();
         }
     }
 
     public function insert($data){
-        $this->db->insert("pengampu", $data);
-        $result = $this->db->query("
-            SELECT
-                'pengampu'.*,
-                thn_akademik.thn_ajaran,
-                matakuliah.kmk, matakuliah.nm_matakul, 
-                pegawai.nip, pegawai.nm_pegawai
-            FROM
-                `pengampu`
-                INNER JOIN `thn_akademik` ON `thn_akademik`.`thn_ajaran` = `pengampu`.`thn_ajaran`
-                INNER JOIN `matakuliah` ON `matakuliah`.`kmk` = `pengampu`.`kmk`
-                INNER JOIN `pegawai` ON `pegawai`.`nip` = `pengampu`.`nip`
-            WHERE
-                pengampu.kmk = '$data->kmk' and
-                pengampu.nip = '$data->nip' and
-                pengampu.thn_ajaran = '$data->thn_ajaran'
-        ");
-        return $result->result_array();
+        $result = $this->db->insert('pengampu', $data);
+        return $result;
     }
 
     public function update($data){
@@ -58,3 +39,4 @@ class Pengampu_model extends CI_Model
         return $result;
     }
 }
+ 

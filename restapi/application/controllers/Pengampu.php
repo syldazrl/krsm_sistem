@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
 require APPPATH . '/libraries/API_Controller.php';
-class Krs extends API_Controller
+class Pengampu extends API_Controller
 {
     public function __construct(){
         parent::__construct();
-        $this->load->model("Pengampu_model", "Pengampumodel");
+        $this->load->model("Pengampu_Model", "Pengampumodel");
     }
 
     public function Panggil(){
@@ -28,7 +28,7 @@ class Krs extends API_Controller
 
     public function Tambah(){
         $pos = $this->input->raw_input_stream;
-        $data = $this->KrsModel->insert(json_decode($pos));
+        $data = $this->Pengampumodel->insert(json_decode($pos));
         if($data){
             $this->api_return(
                 [
@@ -46,7 +46,7 @@ class Krs extends API_Controller
 
     public function Ubah(){
         $pos =json_decode($this->input->raw_input_stream);
-        $data = $this->KrsModel->update($pos);
+        $data = $this->Pengampumodel->update($pos);
         if($data){
             $this->api_return(
                 [
@@ -64,7 +64,7 @@ class Krs extends API_Controller
 
     public function Hapus(){
         $id = $_GET;
-        $result = $this->KrsModel->delete($id);
+        $result = $this->Pengampumodel->delete($id);
         if($result){
             $this->api_return(
                 [

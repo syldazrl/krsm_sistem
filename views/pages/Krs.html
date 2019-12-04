@@ -8,28 +8,20 @@
                 <div class="card-body">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 px-1">
-                                <div class="form-group">
-                                    <label>Nama Dosen Wali</label>
-                                    <select class="form-control"
-                                        ng-options="item as item.nip +'  -  '+ item.nm_pegawai for item in DatasPegawai track by item.nm_pegawai"
-                                        ng-model="SelectedPegawai"></select>
-                                </div>
-                            </div>
-                            <div class="col-md-6 px-1">
+                            <div class="col-md-4 px-1">
                                 <div class="form-group">
                                     <label for="npm"><b>Cari NPM</b></label>
                                     <input type="text" class="form-control" ng-model="Serach" ng-change="SetData()">
                                 </div>
                             </div>
-                            <div class="col-md-4 px-1">
+                            <div class="col-md-8 px-1">
                                 <div class="form-group">
                                     <label>Nama Mahasiswa</label>
                                     <input type="text" class="form-control" ng-model="SelectedMahasiswa.nm_mahasiswa"
                                         disabled>
                                 </div>
                             </div>
-                            <div class="col-md-4 px-1">
+                            <div class="col-md-2 px-1">
                                 <div class="form-group">
                                     <label>Jenjang</label>
                                     <input type="text" class="form-control" ng-model="SelectedMahasiswa.jenjang"
@@ -43,9 +35,7 @@
                                         disabled>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 px-1">
+                            <div class="col-md-6 px-1">
                                 <div class="form-group">
                                     <label>Alamat</label>
                                     <input type="text" class="form-control" ng-model="SelectedMahasiswa.alamat"

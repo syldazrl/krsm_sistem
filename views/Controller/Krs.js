@@ -9,21 +9,24 @@
             $scope.DatasPengampu = [];
             $scope.DatasMahasiswa = [];
             $scope.DatasThnAkademik = [];
-            $scope.SelectedPegawai ={};
-            $scope.SelectedMahasiswa={};
-            $scope.Serach="";
-            $scope.Input={};
+            $scope.SelectedPegawai = {};
+            $scope.SelectedMahasiswa = {};
+            $scope.TampilMatakuliah=false;
+            $scope.Serach = "";
+            $scope.Input = {};
             var a = $scope.SelectedMahasiswa.valueOf.length;
             $scope.status = "Simpan";
-            $http({
-                method: "get",
-                url: "http://localhost/krsm_sistem/restapi/Krs/Panggil",
-                header: {
-                    "Content-Type": "application/json"
-                }
-            }).then(function (response) {
-                $scope.DatasKrs = response.data.data;
-            })
+            // $http({
+            //     method: "get",
+            //     url: "http://localhost/krsm_sistem/restapi/Krs/Panggil",
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     }
+            // }).then(function (response) {
+            //     $scope.DatasKrs = response.data.data;
+            // }, error => {
+            //     console.log(error.data);
+            // });
 
             $http({
                 method: "get",
@@ -65,27 +68,40 @@
                 $scope.DatasThnAkademik = response.data.data;
             })
 
-            $scope.SetData = function(){
-                $scope.SelectedMahasiswa={};
-                angular.forEach($scope.DatasMahasiswa, function(value, key){
-                    if(value.npm == $scope.Serach){
+            $scope.SetData = function () {
+                $scope.SelectedMahasiswa = {};
+                $scope.TampilMatakuliah=false;
+                angular.forEach($scope.DatasMahasiswa, function (value, key) {
+                    if (value.npm == $scope.Serach) {
                         $scope.SelectedMahasiswa = value;
+                        $scope.TampilMatakuliah=true;
                     }
                 })
-                if($scope.SelectedMahasiswa.length==0){
-                    $scope.SelectedMahasiswa = {};
-                }
+                // if ($scope.SelectedMahasiswa.length == 0) {
+                //     $scope.SelectedMahasiswa = {};
+                    
+                // }
             }
 
             $scope.Simpan = function () {
                 $scope.input = {};
-                $scope.input.kmk = $scope.SelectedMatakuliah.kmk;
+                $scope.DatasKrs=[];
+                var thn;
+                angular.forEach($scope.DatasPengampu, function(value, key){
+                    if(value.Checked==true){
+                        $scope.DatasKrs.push(angular.copy(value));
+                    }
+                });
+                angular.forEach($scope.DatasThnAkademik, function(value, key){
+                    if(value.status=="AKTIF"){
+                        thn = value.Id_thn_akademik;
+                    }
+                });
+                $scope.input.detail_krs = $scope.DatasKrs;
                 $scope.input.npm = $scope.SelectedMahasiswa.npm;
-                $scope.input.thn_ajaran = $scope.SelectedThnAkademik.thn_ajaran;
+                $scope.input.Id_thn_akademik = thn;
+                $scope.input.dosen_wali = $scope.SelectedMahasiswa.dosen_wali;
                 if ($scope.status == "Simpan") {
-                    $scope.input.kmk = $scope.SelectedMatakuliah.kmk;
-                    $scope.input.npm = $scope.SelectedMahasiswa.npm;
-                    $scope.input.thn_ajaran = $scope.SelectedThnAkademik.thn_ajaran;
                     $http({
                         method: "POST",
                         url: "http://localhost/krsm_sistem/restapi/Krs/Tambah",
@@ -94,8 +110,13 @@
                             "Content-Type": "application/json"
                         }
                     }).then(function (response) {
-                        $scope.DatasKrs.push(response.data.data[0]);
+                        // $scope.DatasKrs.push(response.data.data[0]);
                         alert("Data Berhasil disimpan");
+                        $scope.DatasKrs=[];
+                        $scope.SelectedMahasiswa={};
+                        $scope.input={};
+                        $scope.TampilMatakuliah=false;
+                        $scope.Serach = "";
                     }, function (error) {
                         console.log(error.message);
                         alert("Data gagal disimpan");

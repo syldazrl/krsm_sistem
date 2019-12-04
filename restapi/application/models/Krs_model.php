@@ -1,7 +1,7 @@
 <?php
 
-class Krs_model extends CI_Model
-{
+class Krs_model extends CI_Model{
+
     public function get($id){
         $this->db->where("id_krs", $data['id_krs']);
         $this->db->where("dosen_wali", $data['dosen_wali']);
@@ -21,7 +21,6 @@ class Krs_model extends CI_Model
         $DataKRS = [
             'dosen_wali'=>$data->dosen_wali,
             'npm'=>$data->npm,
-            'ket'=>$data->ket,
             'Id_thn_akademik'=>$data->Id_thn_akademik
         ];
         $this->db->insert('krs', $DataKRS);

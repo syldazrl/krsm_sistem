@@ -8,12 +8,6 @@
                 <div class="card-body">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 pr-1">
-                                <div class="form-group">
-                                    <label>ID KRS</label>
-                                    <input type="text" class="form-control" ng-model="input.id_krs">
-                                </div>
-                            </div>
                             <div class="col-md-6 px-1">
                                 <div class="form-group">
                                     <label>Nama Dosen Wali</label>
@@ -22,7 +16,7 @@
                                         ng-model="SelectedPegawai"></select>
                                 </div>
                             </div>
-                            <div class="col-md-4 pr-1">
+                            <div class="col-md-6 px-1">
                                 <div class="form-group">
                                     <label for="npm"><b>Cari NPM</b></label>
                                     <input type="text" class="form-control" ng-model="Serach" ng-change="SetData()">
@@ -35,23 +29,23 @@
                                         disabled>
                                 </div>
                             </div>
-                            <div class="col-md-4 pl-1">
+                            <div class="col-md-4 px-1">
                                 <div class="form-group">
                                     <label>Jenjang</label>
                                     <input type="text" class="form-control" ng-model="SelectedMahasiswa.jenjang"
                                         disabled>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 pr-1">
+                            <div class="col-md-4 px-1">
                                 <div class="form-group">
                                     <label>Jurusan</label>
                                     <input type="text" class="form-control" ng-model="SelectedMahasiswa.nm_jurusan"
                                         disabled>
                                 </div>
                             </div>
-                            <div class="col-md-6 pr-1">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 px-1">
                                 <div class="form-group">
                                     <label>Alamat</label>
                                     <input type="text" class="form-control" ng-model="SelectedMahasiswa.alamat"
@@ -60,7 +54,7 @@
                             </div>
                         </div>
                         <br>
-                        <div class="table-responsive">
+                        <div class="table-responsive" ng-show="TampilMatakuliah">
                             <table class="table">
                                 <thead class=" text-primary">
                                     <tr align="center">
@@ -84,7 +78,7 @@
                                         <td class="td-actions">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox">
+                                                    <input class="form-check-input" type="checkbox" ng-model="item.Checked">
                                                     <span class="form-check-sign"></span>
                                                 </label>
                                             </div>
@@ -93,7 +87,7 @@
                                     <tr>
                                         <th colspan="8" align="left"><a class="btn btn-success pull-right"
                                                 id="modal-428658" role="button" href=""
-                                                data-target="#modal-container-428658" data-toggle="modal">Simpan KRS</a>
+                                                data-target="#modal-container-428658" data-toggle="modal" ng-click="Simpan()">Simpan KRS</a>
                                         </th>
                                     </tr>
                                 </tbody>

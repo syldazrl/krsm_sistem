@@ -8,10 +8,13 @@ class Mahasiswa_model extends CI_Model
             $result = $this->db->query("
                 SELECT
                     `mahasiswa`.*,
-                    `jurusan`.`nm_jurusan`
+                    `jurusan`.`nm_jurusan`,
+                    `pegawai`.`nm_pegawai` as dosen_wali
                 FROM
                     `mahasiswa`
                     LEFT JOIN `jurusan` ON `mahasiswa`.`kd_jurusan` = `jurusan`.`kd_jurusan`
+                    LEFT JOIN `dosen_wali` ON `dosen_wali`.`npm` = `mahasiswa`.`npm`
+                    LEFT JOIN `pegawai` ON `dosen_wali`.`nip` = `pegawai`.`nip`
                 WHERE mahasiswa.npm = '$npm'
             ");
             return $result->result_array();
@@ -20,10 +23,13 @@ class Mahasiswa_model extends CI_Model
             $result = $this->db->query("
                 SELECT
                     `mahasiswa`.*,
-                    `jurusan`.`nm_jurusan`
+                    `jurusan`.`nm_jurusan`,
+                    `pegawai`.`nm_pegawai` as dosen_wali
                 FROM
                     `mahasiswa`
                     LEFT JOIN `jurusan` ON `mahasiswa`.`kd_jurusan` = `jurusan`.`kd_jurusan`
+                    LEFT JOIN `dosen_wali` ON `dosen_wali`.`npm` = `mahasiswa`.`npm`
+                    LEFT JOIN `pegawai` ON `dosen_wali`.`nip` = `pegawai`.`nip`
             ");
             return $result->result_array();
         }

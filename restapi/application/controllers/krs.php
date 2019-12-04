@@ -21,7 +21,7 @@ class Krs extends API_Controller
             $this->api_return(
                 [
                     "data" => "Data Kosong"
-                ], 400
+                ], 200
             );
         }
     }
